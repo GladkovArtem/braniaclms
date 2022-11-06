@@ -21,7 +21,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="../">
+            <a class="navbar-brand" href="{% url 'mainapp:index' %}">
                 <img src="{% static 'img/logo.png' %}" alt="">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -47,9 +47,9 @@
                 </p>
                 <p>
                 <ul class="list-unstyled">
-                    <li><a href="../">Домашняя</a></li>
-                    <li><a href="../mainapp/news">Новости</a></li>
-                    <li><a href="../mainapp/login">Войти</a></li>
+                    <li><a href="{% url 'mainapp:index' %}">Домашняя</a></li>
+                    <li><a href="{% url 'mainapp:news' %}">Новости</a></li>
+                    <li><a href="{% url 'mainapp:login' %}">Войти</a></li>
                 </ul>
                 </p>
             </div>
@@ -62,7 +62,7 @@
                     <li><a href="#">Положения &amp; Условия</a></li>
                     <li><a href="#">Конфиденциальность &amp; Cookies</a></li>
                     <li><a href="#">Документация по API</a></li>
-                    <li><a href="../mainapp/docsite">Документация по сайту</a></li>
+                    <li><a href="{% url 'mainapp:docsite' %}">Документация по сайту</a></li>
                 </ul>
                 </p>
             </div>
