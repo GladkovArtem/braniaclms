@@ -1,7 +1,6 @@
 {% extends 'mainapp/base.html'%}
 {% block content %}
 
-
 <div class="row">
 
   <div class="col-lg-8">
@@ -9,9 +8,10 @@
     <div class="card my-2">
       <div class="card-body">
         <h5 class="card-title">{{news_item.title}}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">{{news_item.date}}</h6>
-        <p class="card-text">{{news_item.preview}}</p>
-        <a href="#" class="card-link">Подробнее</a>
+        <h6 class="card-subtitle mb-2 text-muted">{{ news_item.created_at}}</h6>
+        <p class="card-text">{{news_item.preamble}}</p>
+        <p class="card-text">{{news_item.body|safe}}</p>
+        <a href="{% url 'mainapp:news_detail' news_item.pk %}" class="card-link">Подробнее</a>
       </div>
     </div>
     {% endfor %}

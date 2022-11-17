@@ -1,0 +1,59 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+<form class="col-6 m-auto pt-5 pb-5" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <p>
+        <input type="text" name="username" autofocus=""
+               value="{{ user.username }}"
+               autocapitalize="none" autocomplete="username"
+               maxlength="150" class="textinput textInput form-control"
+               required="" id="id_username" placeholder="Username">
+    </p>
+    <p>
+        <input type="email" name="email" autofocus=""
+               value="{{ user.email }}"
+               autocapitalize="none" autocomplete="email"
+               maxlength="150" class="textinput textInput form-control"
+               required="" id="id_email" placeholder="Email">
+    </p>
+    <p>
+        <input type="text" name="first_name" autocapitalize="none"
+               value="{{ user.first_name }}"
+               maxlength="150" class="textinput textInput form-control"
+               required="" placeholder="First name">
+    </p>
+    <p>
+        <input type="text" name="last_name" autocapitalize="none"
+               value="{{ user.last_name }}"
+               maxlength="150" class="textinput textInput form-control"
+               required="" placeholder="Last name">
+    </p>
+    <p>
+        <input type="number" name="age" autocapitalize="none"
+               value="{{ user.age }}"
+               class="textinput textInput form-control"
+               required="" placeholder="Age">
+    </p>
+    <p>
+        <button type="submit" class="btn btn-primary btn-block">
+            Сохранить
+        </button>
+    </p>
+</form>
+
+{% endblock %}
+
+{% block js %}
+<script>
+$(document).ready(function () {
+    {% if messages %}
+        // Toasts
+        $(".toast").toast({ delay: 5000 });
+        $(".toast").toast("show");
+    {% endif %}
+});
+
+
+</script>
+
+{% endblock %}

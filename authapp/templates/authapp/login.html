@@ -1,0 +1,27 @@
+{% extends 'authapp/base.html' %}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <p>
+        <input id="id_username" class="form-control" type="text" name="username" placeholder="Имя пользователя"
+               required="" autofocus="">
+    </p>
+    <p>
+        <input id="id_password" class="form-control" type="password" name="password" placeholder="Пароль" required="">
+    </p>
+    <p>
+        <button type="submit" class="btn btn-primary btn-block">Войти</button>
+    </p>
+</form>
+<p>
+<div class="row justify-content-between">
+    <div class="col">
+        <a href="{% url 'authapp:register'%}"><small>Регистрация</small></a>
+    </div>
+    <div class="col">
+        <a href="#"><small>Забыли пароль?</small></a>
+    </div>
+</div>
+</p>
+
+{% endblock %}
