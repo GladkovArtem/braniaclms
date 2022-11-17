@@ -1,0 +1,1 @@
+[{"model": "mainapp.news", "pk": 1, "fields": {"title": "Новость из админки", "preamble": "Какое-то вступление", "body": "Тут могла быть ваша реклама", "body_as_markdown": false, "created_at": "2022-11-16T18:25:58.931Z", "updated_at": "2022-11-16T18:25:58.931Z", "deleted": false}}]
