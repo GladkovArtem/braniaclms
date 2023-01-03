@@ -1,0 +1,20 @@
+{% extends 'mainapp/base.html'%}
+{% block content %}
+
+<div class="row">
+
+  <div class="col-lg-8">
+    {% for news_item in object_list %}
+    <div class="card my-2">
+      <div class="card-body">
+        <h5 class="card-title">{{object.title}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{ object.created_at}}</h6>
+        <p class="card-text">{{object.preamble}}</p>
+        <a href="#" class="card-link">Подробнее</a>
+      </div>
+    </div>
+    {% endfor %}
+
+  </div>
+</div>
+{% endblock %}
