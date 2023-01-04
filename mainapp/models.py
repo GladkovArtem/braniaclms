@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth import get_user_model
+
 
 class News(models.Model):
     title = models.CharField(max_length=256, verbose_name='Заголовок')
@@ -20,6 +22,8 @@ class News(models.Model):
     def delete(self, *args, **kwargs):
         self.deleted = True
         self.save()
+
+
 class Courses(models.Model):
     name = models.CharField(max_length=256, verbose_name="Name")
     description = models.TextField(verbose_name="Description", blank=True, null=True)
@@ -36,6 +40,8 @@ class Courses(models.Model):
     def delete(self, *args):
         self.deleted = True
         self.save()
+
+
 class Lesson(models.Model):
     course = models.ForeignKey(Courses, on_delete=models.CASCADE)
     num = models.PositiveIntegerField(verbose_name="Lesson number")
@@ -56,6 +62,7 @@ class Lesson(models.Model):
     class Meta:
         ordering = ("course", "num")
 
+
 class CourseTeachers(models.Model):
     course = models.ManyToManyField(Courses)
     name_first = models.CharField(max_length=128, verbose_name="Name")
@@ -69,3 +76,28 @@ class CourseTeachers(models.Model):
     def delete(self, *args):
         self.deleted = True
         self.save()
+
+
+class CourseFeedback(models.Model):
+
+    RATING = (
+        (5, "⭐⭐⭐⭐⭐"),
+        (4, "⭐⭐⭐⭐"),
+        (3, "⭐⭐⭐"),
+        (2, "⭐⭐"),
+        (1, "⭐")
+    )
+
+    course = models.ForeignKey(Courses, on_delete=models.CASCADE, verbose_name='Курс')
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, verbose_name='Пользователь')
+    feedback = models.TextField(default='Без отзыва', verbose_name='Отзыв')
+    rating = models.SmallIntegerField(choices=RATING, default=5, verbose_name='Рейтинг')
+    created = models.DateTimeField(auto_now_add=True, verbose_name="Created")
+    deleted = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = ''
+        verbose_name_plural = ''
+
+    def __str__(self):
+        return f'Отзыв на {self.course} от {self.user}'

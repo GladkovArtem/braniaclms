@@ -1,15 +1,25 @@
-{% extends 'mainapp/base.html' %}
+{% extends 'authapp/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-<form class="col-6 m-auto pt-5 pb-5" method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form|crispy }}
     <p>
         <button type="submit" class="btn btn-primary btn-block">
-            Сохранить
+            Зарегистрироваться
         </button>
     </p>
 </form>
+<p>
+<div class="row justify-content-between">
+    <div class="col">
+        <a href="{% url 'authapp:login'%}"><small>Войти</small></a>
+    </div>
+    <div class="col">
+        <a href="#"><small>Забыли пароль?</small></a>
+    </div>
+</div>
+</p>
 
 {% endblock %}
 
